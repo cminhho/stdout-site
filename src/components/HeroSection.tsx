@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Github, ArrowRight, Monitor, Apple } from "lucide-react";
 
+import heroScreenshot from "@/assets/images/stdout-screenshot.png";
+
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -110,7 +112,7 @@ const HeroSection = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[hsl(142_71%_45%/0.7)]" />
             </div>
             <img
-              src={`${import.meta.env.BASE_URL}images/stdout-screenshot.png`}
+              src={heroScreenshot}
               alt="Stdout app overview — developer toolkit hub with sidebar and tools grid"
               className="w-full h-auto rounded-xl"
               loading="lazy"

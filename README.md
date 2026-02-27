@@ -247,20 +247,8 @@ npm run dev -- --port 3000
 - Ensure **Settings → Pages** → **Source** is **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**.
 - After the workflow runs, the site may take a minute to update. Re-run the workflow if needed.
 
-### Deploy fails (legacy): `Tag not allowed` or `environment protection rules`
-
-The `github-pages` environment is restricting which refs can deploy.
-
-1. Go to **Settings** → **Environments** → **github-pages**.
-2. Under **Deployment branch / tag rules** (or **Deployment protection rules**):
-   - Either add a rule that allows tags matching `v*` (or the tag you push), or
-   - Remove / relax the rule that blocks your tag (e.g. allow "All branches and tags" or add `v*`).
-3. If **Required reviewers** is enabled and you want deploy-on-push without approval, either add yourself and approve the pending deployment, or disable required reviewers for this environment.
-4. Re-run the failed workflow or push the tag again.
-
 ### Build succeeds but site shows 404 or wrong base path
 
-- Ensure **Pages** is set to **GitHub Actions** (not “Deploy from branch” unless you use `npm run deploy`).
 - Do not change `base` in `vite.config.ts` for GitHub Pages project sites; it must be `'/stdout-site/'` when `command === 'build'`.
 
 ### Release script: "working tree has uncommitted changes"
