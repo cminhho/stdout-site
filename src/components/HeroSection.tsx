@@ -5,7 +5,7 @@ import heroScreenshot from "@/assets/images/stdout-screenshot.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[10.5rem] pb-16 sm:pt-[12.5rem] sm:pb-24">
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="absolute inset-0 bg-gradient-radial" />
       <div className="absolute inset-0 liquid-mesh" />
@@ -28,7 +28,7 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Headline */}
+        {/* Headline — brand play on "standard output"; two-line for punch */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -36,13 +36,13 @@ const HeroSection = () => {
           className="mb-6"
         >
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-[0.95]">
-            <span className="text-gradient-primary">Your standard output </span>
+            <span className="text-gradient-primary">Your standard output</span>
             <br />
             <span className="text-foreground">for dev tools.</span>
           </h1>
         </motion.div>
 
-        {/* Subtitle */}
+        {/* Subtitle — value + proof (README: format, convert, encode, generate) */}
         <motion.p
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -52,16 +52,17 @@ const HeroSection = () => {
           60+ tools for formatting, converting, encoding &amp; generating.
         </motion.p>
 
+        {/* Supporting — benefits: no backend, no sign-up, local (content-creator: clear value) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm text-muted-foreground/60 max-w-md mx-auto mb-8"
+          className="text-sm text-muted-foreground max-w-md mx-auto mb-8"
         >
           No backend. No sign-up. Everything runs locally in your browser.
         </motion.p>
 
-        {/* Platform pills */}
+        {/* Platform pills — Web, macOS, Windows, Linux (README parity) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -76,7 +77,7 @@ const HeroSection = () => {
           ].map((item) => (
             <span
               key={item.label}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-surface text-xs text-muted-foreground/70 font-mono"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-surface text-xs text-muted-foreground font-mono"
             >
               {item.icon}
               {item.label}

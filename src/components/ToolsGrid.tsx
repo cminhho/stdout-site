@@ -87,7 +87,7 @@ const ToolsGrid = () => {
   }, [search, activeCategory]);
 
   return (
-    <section id="tools" className="relative py-24 px-6">
+    <section id="tools" className="relative py-24 px-4 sm:px-6">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ const ToolsGrid = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
-            59 Developer Tools
+            60+ Developer Tools
           </h2>
           <p className="text-muted-foreground text-base max-w-md mx-auto">
             Everything you need, right in your browser.

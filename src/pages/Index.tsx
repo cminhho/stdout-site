@@ -7,9 +7,9 @@ import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
-      <main className="pt-14">
+      <main className="">
         <HeroSection />
         <ToolsGrid />
         <PhilosophySection />
