@@ -189,10 +189,13 @@ Test files live under `src/test/` and next to source (e.g. `*.test.tsx`). Setup 
 
 Deployment is automated when you push a **version tag** matching `v*` (e.g. `v1.0.0`, `v1.0.1`).
 
-**One-time setup**
+**One-time setup (required before first deploy)**
 
-1. Open the repo on GitHub → **Settings** → **Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+If you skip this, the workflow will fail with `Failed to create deployment (status: 404)`.
+
+1. Open **[Settings → Pages](https://github.com/cminhho/stdout-site/settings/pages)** for this repo.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch").
+3. Save. No need to pick a branch or folder — the workflow will deploy when you push a version tag.
 
 **Release and deploy**
 
@@ -242,7 +245,15 @@ Vite will try the next free port and print it. To force a port:
 npm run dev -- --port 3000
 ```
 
-### Build fails: `base` or asset 404s on GitHub Pages
+### Deploy fails: `Failed to create deployment (status: 404)` or `Ensure GitHub Pages has been enabled`
+
+GitHub Pages is not enabled for this repo, or the source is not set to GitHub Actions.
+
+1. Go to **[Settings → Pages](https://github.com/cminhho/stdout-site/settings/pages)**.
+2. Set **Build and deployment** → **Source** to **GitHub Actions**.
+3. Re-run the failed workflow (Actions tab → select the run → "Re-run all jobs").
+
+### Build succeeds but site shows 404 or wrong base path
 
 - Ensure **Pages** is set to **GitHub Actions** (not “Deploy from branch” unless you use `npm run deploy`).
 - Do not change `base` in `vite.config.ts` for GitHub Pages project sites; it must be `'/stdout-site/'` when `command === 'build'`.

@@ -1,5 +1,6 @@
 # Deploy to GitHub Pages on version tag (e.g. v1.0.0).
-# Repo Settings → Pages → Build and deployment → Source: GitHub Actions.
+# One-time: enable Pages in repo Settings → Pages → Source: GitHub Actions.
+# If deploy fails with 404: https://github.com/cminhho/stdout-site/settings/pages
 
 name: Deploy to GitHub Pages
 
