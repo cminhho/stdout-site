@@ -1,6 +1,6 @@
 # Deploy to GitHub Pages on version tag (e.g. v1.0.0).
-# One-time: Settings → Pages → Source: GitHub Actions.
-# If "Tag not allowed": Settings → Environments → github-pages → allow v* (or relax deployment rules).
+# Pushes dist/ to branch gh-pages — no environment or protection rules needed.
+# One-time: Settings → Pages → Source: Deploy from a branch → branch gh-pages, folder / (root).
 
 name: Deploy to GitHub Pages
 
@@ -10,16 +10,14 @@ on:
       - 'v*'
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: 'pages'
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,18 +35,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

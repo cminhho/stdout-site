@@ -187,15 +187,13 @@ Test files live under `src/test/` and next to source (e.g. `*.test.tsx`). Setup 
 
 ### GitHub Pages (recommended): deploy on version tag
 
-Deployment is automated when you push a **version tag** matching `v*` (e.g. `v1.0.0`, `v1.0.1`).
+Deployment is automated when you push a **version tag** matching `v*` (e.g. `v1.0.0`, `v1.0.1`). The workflow builds and pushes `dist/` to the `gh-pages` branch — no environment or protection rules required.
 
 **One-time setup (required before first deploy)**
 
-If you skip this, the workflow will fail with `Failed to create deployment (status: 404)`.
-
 1. Open **[Settings → Pages](https://github.com/cminhho/stdout-site/settings/pages)** for this repo.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch").
-3. Save. No need to pick a branch or folder — the workflow will deploy when you push a version tag.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+3. Choose branch **gh-pages** and folder **/ (root)**. Save.
 
 **Release and deploy**
 
@@ -212,20 +210,19 @@ What happens:
 1. `scripts/release.sh` checks for uncommitted changes (except `package.json` / `package-lock.json`).
 2. `npm version <patch|minor|major>` updates `package.json` and creates a git tag `vX.Y.Z`.
 3. `git push origin main --follow-tags` pushes the commit and the tag.
-4. The [deploy-pages workflow](.github/workflows/deploy-pages.yml) runs on the new tag: `npm ci` → `npm run build` → upload `dist` → deploy to GitHub Pages.
+4. The [deploy-pages workflow](.github/workflows/deploy-pages.yml) runs on the new tag: `npm ci` → `npm run build` → push `dist/` to branch `gh-pages`. GitHub Pages serves from that branch.
 
 **Site URL:** `https://<username>.github.io/stdout-site/` (e.g. [https://cminhho.github.io/stdout-site/](https://cminhho.github.io/stdout-site/)).
 
-### Manual deploy (branch `gh-pages`)
+### Manual deploy (same branch `gh-pages`)
 
-If you want to deploy without a tag:
+To deploy without a tag, run:
 
-1. In **Settings → Pages**, set **Source** to **Deploy from a branch**, branch `gh-pages`, folder **/ (root)**.
-2. Locally run:
-   ```bash
-   npm run deploy
-   ```
-   This runs `vite build` and pushes the contents of `dist/` to the `gh-pages` branch.
+```bash
+npm run deploy
+```
+
+This runs `vite build` and pushes the contents of `dist/` to the `gh-pages` branch. Ensure **Settings → Pages** is set to **Deploy from a branch**, branch `gh-pages`, folder **/ (root)**.
 
 ### Other static hosts (Vercel, Netlify, Firebase)
 
@@ -245,15 +242,12 @@ Vite will try the next free port and print it. To force a port:
 npm run dev -- --port 3000
 ```
 
-### Deploy fails: `Failed to create deployment (status: 404)` or `Ensure GitHub Pages has been enabled`
+### Deploy fails or site not updating
 
-GitHub Pages is not enabled for this repo, or the source is not set to GitHub Actions.
+- Ensure **Settings → Pages** → **Source** is **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**.
+- After the workflow runs, the site may take a minute to update. Re-run the workflow if needed.
 
-1. Go to **[Settings → Pages](https://github.com/cminhho/stdout-site/settings/pages)**.
-2. Set **Build and deployment** → **Source** to **GitHub Actions**.
-3. Re-run the failed workflow (Actions tab → select the run → "Re-run all jobs").
-
-### Deploy fails: `Tag "vX.Y.Z" is not allowed to deploy to github-pages due to environment protection rules`
+### Deploy fails (legacy): `Tag not allowed` or `environment protection rules`
 
 The `github-pages` environment is restricting which refs can deploy.
 

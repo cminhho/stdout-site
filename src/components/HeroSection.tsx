@@ -110,7 +110,7 @@ const HeroSection = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[hsl(142_71%_45%/0.7)]" />
             </div>
             <img
-              src="/images/stdout-screenshot.png"
+              src={`${import.meta.env.BASE_URL}images/stdout-screenshot.png`}
               alt="Stdout app overview — developer toolkit hub with sidebar and tools grid"
               className="w-full h-auto rounded-xl"
               loading="lazy"
