@@ -1,7 +1,7 @@
 {
   "name": "stdout-site",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official website for Stdout — developer tools platform",
   "type": "module",
   "repository": {
@@ -9,7 +9,11 @@
     "url": "https://github.com/cminhho/stdout-site.git"
   },
   "homepage": "https://github.com/cminhho/stdout-site#readme",
-  "keywords": ["stdout", "developer-tools", "official-website"],
+  "keywords": [
+    "stdout",
+    "developer-tools",
+    "official-website"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
