@@ -8,6 +8,7 @@ Reference for the current theme when doing UI/UX work
 
 | Item | Value |
 |------|--------|
+| **Product** | stdout — your standard output for dev tools (60+ tools, local-first) |
 | **Product type** | Landing page (developer tools platform) |
 | **Style** | Liquid Glass, dark-first, minimal |
 | **Stack** | React, Vite, Tailwind, shadcn/ui (Radix), Framer Motion |

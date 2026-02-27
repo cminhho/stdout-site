@@ -1,8 +1,10 @@
-# Stdout — Official Website
+# stdout — Official Website
 
-Static landing site for [Stdout](https://github.com/cminhho/stdout) (developer tools platform). Built with React, Vite, Tailwind, shadcn/ui.
+Landing site for [stdout](https://github.com/cminhho/stdout): **your standard output for dev tools** — 60+ tools for formatting, converting, encoding & generating. No backend, no sign-up; everything runs locally (Web, macOS, Windows, Linux).
 
-**Live:** [cminhho.github.io/stdout-site](https://cminhho.github.io/stdout-site/) · **App:** [cminhho/stdout](https://github.com/cminhho/stdout)
+Built with React, Vite, Tailwind, shadcn/ui.
+
+**Live:** [cminhho.github.io/stdout-site](https://cminhho.github.io/stdout-site/) · **App:** [stdout-tools.web.app](https://stdout-tools.web.app/) · **Repo:** [cminhho/stdout](https://github.com/cminhho/stdout)
 
 ## Quick start
 
@@ -54,6 +56,13 @@ Build uses `base: '/stdout-site/'` for GitHub Pages; do not change for project-s
 ## Stack
 
 Vite 5 · React 18 · TypeScript · Tailwind · shadcn/ui (Radix) · React Router · Framer Motion · Vitest.
+
+## Docs
+
+| File | Purpose |
+|------|---------|
+| `docs/THEME.md` | Design system (Liquid Glass, tokens, components) |
+| `docs/HERO_CONTENT.md` | Hero copy strategy, alternatives, SEO |
 
 ## Troubleshooting
 
