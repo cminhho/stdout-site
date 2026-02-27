@@ -1,6 +1,6 @@
 # Deploy to GitHub Pages on version tag (e.g. v1.0.0).
-# One-time: enable Pages in repo Settings → Pages → Source: GitHub Actions.
-# If deploy fails with 404: https://github.com/cminhho/stdout-site/settings/pages
+# One-time: Settings → Pages → Source: GitHub Actions.
+# If "Tag not allowed": Settings → Environments → github-pages → allow v* (or relax deployment rules).
 
 name: Deploy to GitHub Pages
 

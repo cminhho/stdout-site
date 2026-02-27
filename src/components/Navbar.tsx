@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Github } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -5,10 +6,10 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-surface-strong">
       <div className="container max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight">
-          <img src="/favicon.svg" alt="stdout logo" className="w-5 h-5" />
+        <Link to="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight">
+          <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="stdout logo" className="w-5 h-5" />
           <span className="text-foreground">stdout</span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-5">
           <a href="#tools" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
