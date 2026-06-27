@@ -1,0 +1,20 @@
+---
+// The stdout brand mark: a `>_` terminal glyph (app favicon) + lowercase "stdout" in mono.
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<span class={`inline-flex items-center gap-2 font-mono font-semibold ${className}`}>
+  <span
+    class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-[#262626] text-primary"
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 32 32" fill="none" class="h-5 w-5">
+      <path d="M11 9.5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M19.5 21.5h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+    </svg>
+  </span>
+  <span class="tracking-tight">stdout</span>
+</span>

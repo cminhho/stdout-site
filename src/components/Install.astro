@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+import { WEB_APP, GITHUB, BREW_CMD } from "../consts";
+const releases = `${GITHUB}/releases`;
+---
+
+<section id="install" class="border-t border-border/60 py-20 sm:py-28">
+  <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <h2 class="font-mono text-2xl font-semibold tracking-tight sm:text-3xl">Use it anywhere</h2>
+      <p class="mt-3 text-muted-foreground">
+        Run it in the browser, or install the native desktop app for offline use.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-3">
+      <!-- Web -->
+      <div class="reveal card-surface flex flex-col rounded-card p-6 ring-1 ring-primary/40">
+        <div class="flex items-center gap-2.5">
+          <Icon name="lucide:globe" class="h-5 w-5 text-primary" />
+          <h3 class="font-medium">Web</h3>
+          <span class="ml-auto rounded-full bg-primary/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-primary">Recommended</span>
+        </div>
+        <p class="mt-3 flex-1 text-sm text-muted-foreground">Nothing to install. Works offline after first load.</p>
+        <a
+          href={WEB_APP}
+          target="_blank"
+          rel="noopener"
+          class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Open in browser
+          <Icon name="lucide:arrow-up-right" class="h-4 w-4" />
+        </a>
+      </div>
+
+      <!-- macOS -->
+      <div class="reveal card-surface flex flex-col rounded-card p-6">
+        <div class="flex items-center gap-2.5">
+          <Icon name="lucide:apple" class="h-5 w-5" />
+          <h3 class="font-medium">macOS</h3>
+        </div>
+        <p class="mt-3 flex-1 text-sm text-muted-foreground">Install via Homebrew cask.</p>
+        <div class="mt-5 flex items-center gap-2 rounded-lg border border-border bg-code-bg p-1 pl-3">
+          <code class="flex-1 truncate font-mono text-xs text-foreground" title={BREW_CMD}>{BREW_CMD}</code>
+          <button
+            type="button"
+            data-copy={BREW_CMD}
+            class="copy-btn inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            aria-label="Copy install command"
+          >
+            <Icon name="lucide:copy" class="copy-icon h-4 w-4" />
+            <Icon name="lucide:check" class="check-icon hidden h-4 w-4 text-primary" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Windows / Linux -->
+      <div class="reveal card-surface flex flex-col rounded-card p-6">
+        <div class="flex items-center gap-2.5">
+          <Icon name="lucide:monitor" class="h-5 w-5" />
+          <h3 class="font-medium">Windows · Linux</h3>
+        </div>
+        <p class="mt-3 flex-1 text-sm text-muted-foreground">Download a build from GitHub releases.</p>
+        <a
+          href={releases}
+          target="_blank"
+          rel="noopener"
+          class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+        >
+          <Icon name="lucide:download" class="h-4 w-4" />
+          Releases
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.getAttribute("data-copy") || "");
+        const copy = btn.querySelector(".copy-icon");
+        const check = btn.querySelector(".check-icon");
+        copy?.classList.add("hidden");
+        check?.classList.remove("hidden");
+        setTimeout(() => {
+          copy?.classList.remove("hidden");
+          check?.classList.add("hidden");
+        }, 1500);
+      } catch (e) {}
+    });
+  });
+</script>

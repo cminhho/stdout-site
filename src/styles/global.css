@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── stdout design tokens (ported from the app: src/index.css) ──────────────
+   Dark-first. Blue primary, code-syntax palette, system + mono fonts, 8px-grid radii. */
+:root {
+  --background: 224 13% 12%;
+  --foreground: 210 40% 98%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --card: 224 13% 16%;
+  --muted: 215 14% 22%;
+  --muted-foreground: 215 9% 72%;
+  --border: 216 12% 24%;
+
+  /* VS Code–style code syntax palette */
+  --code-bg: 224 13% 14%;
+  --code-key: 210 40% 92%;
+  --code-string: 142 69% 58%;
+  --code-number: 31 92% 50%;
+  --code-boolean: 258 90% 66%;
+  --code-punctuation: 215 9% 62%;
+  --code-comment: 215 9% 48%;
+
+  --radius: 0.625rem;
+  --radius-card: 0.5rem;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Consolas", monospace;
+
+  /* Liquid Glass (macOS-style) */
+  --glass-blur: 18px;
+  --glass-saturate: 180%;
+  --glass-edge: 0 0% 100% / 0.1;
+  --glass-highlight: 0 0% 100% / 0.06;
+
+  color-scheme: dark;
+}
+
+/* Light theme (warm neutrals, matching the app's light mode) */
+.light {
+  --background: 25 20% 97%;
+  --foreground: 25 25% 18%;
+  --card: 0 0% 100%;
+  --muted: 25 16% 92%;
+  --muted-foreground: 25 15% 42%;
+  --border: 25 12% 88%;
+  --code-bg: 0 0% 99%;
+  --code-key: 25 35% 22%;
+  --code-string: 142 45% 32%;
+  --code-number: 25 75% 32%;
+  --code-boolean: 258 55% 38%;
+  --code-punctuation: 25 15% 42%;
+  --code-comment: 25 10% 52%;
+  --glass-edge: 25 15% 50% / 0.12;
+  --glass-highlight: 0 0% 100% / 0.5;
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer components {
+  /* Liquid-glass surface (cards, sticky header) */
+  .glass {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border: 1px solid hsl(var(--glass-edge));
+    box-shadow: inset 0 1px 0 0 hsl(var(--glass-highlight));
+  }
+  .card-surface {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+  }
+  /* Subtle dotted-grid backdrop for hero */
+  .bg-grid {
+    background-image: radial-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal: hidden until .is-visible is set by the IntersectionObserver in Base.astro */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

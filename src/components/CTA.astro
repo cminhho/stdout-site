@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import { WEB_APP, GITHUB } from "../consts";
+---
+
+<section class="border-t border-border/60 py-20 sm:py-28">
+  <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+    <div class="reveal glass relative overflow-hidden rounded-card px-6 py-14 text-center sm:px-12">
+      <div
+        class="pointer-events-none absolute inset-0 -z-10 opacity-40"
+        style="background: radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.35), transparent 60%);"
+        aria-hidden="true"
+      >
+      </div>
+      <h2 class="mx-auto max-w-xl font-mono text-2xl font-semibold tracking-tight sm:text-3xl">
+        Bring your dev tools home
+      </h2>
+      <p class="mx-auto mt-3 max-w-lg text-muted-foreground">
+        Format, convert, encode, and generate — locally, privately, for free. No signup required.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href={WEB_APP}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Open the app
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href={GITHUB}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-medium transition-colors hover:bg-muted"
+        >
+          <Icon name="lucide:github" class="h-4 w-4" />
+          View source
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,90 @@
+---
+import { Icon } from "astro-icon/components";
+import { WEB_APP, GITHUB, TOOL_COUNT } from "../consts";
+
+const badges = ["100% client-side", "No signup", "Offline-ready", "MIT licensed"];
+---
+
+<section id="top" class="relative overflow-hidden bg-grid pt-32 pb-20 sm:pt-40">
+  <!-- soft blue glow -->
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[820px] max-w-full -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+    style="background: radial-gradient(ellipse at center, hsl(var(--primary) / 0.5), transparent 70%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="reveal">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          {TOOL_COUNT} tools · web + desktop
+        </span>
+
+        <h1 class="mt-5 font-mono text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+          Developer tools,<br /><span class="text-primary">local-first.</span>
+        </h1>
+
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          Your standard output for dev tools — format, convert, encode, generate.
+          {TOOL_COUNT} tools that run <span class="text-foreground">100% in your browser</span>.
+          No backend, no signup, nothing leaves your machine.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={WEB_APP}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Open the app
+            <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </a>
+          <a
+            href={GITHUB}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-medium transition-colors hover:bg-muted"
+          >
+            <Icon name="lucide:star" class="h-4 w-4" />
+            Star on GitHub
+          </a>
+        </div>
+
+        <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground">
+          {
+            badges.map((b) => (
+              <li class="inline-flex items-center gap-1.5">
+                <Icon name="lucide:check" class="h-3.5 w-3.5 text-primary" />
+                {b}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Editor mock (on-brand replacement for the old stylized PNG) -->
+      <div class="reveal">
+        <div class="card-surface overflow-hidden rounded-card shadow-2xl">
+          <div class="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5">
+            <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+            <span class="ml-2 font-mono text-xs text-muted-foreground">JSON Format / Validate</span>
+          </div>
+          <pre class="overflow-x-auto bg-code-bg p-5 font-mono text-[13px] leading-relaxed"><code><span class="text-code-punctuation">&#123;</span>
+  <span class="text-code-key">"service"</span><span class="text-code-punctuation">:</span> <span class="text-code-string">"stdout"</span><span class="text-code-punctuation">,</span>
+  <span class="text-code-key">"local"</span><span class="text-code-punctuation">:</span> <span class="text-code-boolean">true</span><span class="text-code-punctuation">,</span>
+  <span class="text-code-key">"tools"</span><span class="text-code-punctuation">:</span> <span class="text-code-number">59</span><span class="text-code-punctuation">,</span>
+  <span class="text-code-key">"sendsData"</span><span class="text-code-punctuation">:</span> <span class="text-code-boolean">null</span><span class="text-code-punctuation">,</span>
+  <span class="text-code-key">"runtime"</span><span class="text-code-punctuation">:</span> <span class="text-code-punctuation">[</span><span class="text-code-string">"browser"</span><span class="text-code-punctuation">,</span> <span class="text-code-string">"desktop"</span><span class="text-code-punctuation">]</span>
+<span class="text-code-punctuation">&#125;</span><span class="ml-0.5 inline-block w-2 animate-blink bg-primary">&nbsp;</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
