@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+import { TOOL_GROUPS, TOOL_COUNT, WEB_APP } from "../consts";
+
+const ICONS: Record<string, string> = {
+  Formatters: "lucide:braces",
+  Converters: "lucide:repeat",
+  "Encode & Crypto": "lucide:lock",
+  Validators: "lucide:shield-check",
+  Generators: "lucide:sparkles",
+  "Web Resources": "lucide:globe",
+  "String & Utilities": "lucide:type",
+  "Networking & Other": "lucide:network",
+  "Image & Media": "lucide:image",
+};
+---
+
+<section id="tools" class="border-t border-border/60 py-20 sm:py-28">
+  <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <h2 class="font-mono text-2xl font-semibold tracking-tight sm:text-3xl">
+          {TOOL_COUNT} tools, nine categories
+        </h2>
+        <p class="mt-3 text-muted-foreground">
+          One app for everything that goes to your standard output — organized, searchable (⌘K), tabbed.
+        </p>
+      </div>
+      <a
+        href={WEB_APP}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+      >
+        Open all tools
+        <Icon name="lucide:arrow-up-right" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        TOOL_GROUPS.map((g) => (
+          <div class="reveal card-surface rounded-card p-5 transition-colors hover:border-primary/40">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Icon name={ICONS[g.name] ?? "lucide:square"} class="h-4 w-4" />
+                </span>
+                <h3 class="font-medium">{g.name}</h3>
+              </div>
+              <span class="font-mono text-xs text-muted-foreground">{g.count}</span>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {g.tools.map((t) => (
+                <span class="rounded-md border border-border bg-muted/40 px-2 py-1 font-mono text-xs text-muted-foreground">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+import Wordmark from "./Wordmark.astro";
+import { NAV, GITHUB, WEB_APP } from "../consts";
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-colors duration-200">
+  <div class="mx-auto flex h-14 max-w-content items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href="#top" class="text-foreground" aria-label="stdout home">
+      <Wordmark class="text-[15px]" />
+    </a>
+
+    <nav class="hidden items-center gap-1 md:flex">
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1.5">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        aria-label="Toggle theme"
+      >
+        <Icon name="lucide:sun" class="hidden h-4 w-4 [.light_&]:block" />
+        <Icon name="lucide:moon" class="h-4 w-4 [.light_&]:hidden" />
+      </button>
+      <a
+        href={GITHUB}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        aria-label="GitHub repository"
+      >
+        <Icon name="lucide:github" class="h-4 w-4" />
+      </a>
+      <a
+        href={WEB_APP}
+        target="_blank"
+        rel="noopener"
+        class="ml-1 hidden rounded-md bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-flex"
+      >
+        Open app
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Theme toggle (persisted) — fixes the old site's reset-on-reload.
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const light = document.documentElement.classList.toggle("light");
+    try {
+      localStorage.setItem("stdout-theme", light ? "light" : "dark");
+    } catch (e) {}
+  });
+  // Glass backdrop once scrolled.
+  const header = document.getElementById("site-header");
+  const onScroll = () => header?.classList.toggle("glass", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>
